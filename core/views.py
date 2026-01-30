@@ -29,12 +29,15 @@ class OcorrenciaCreateView(CreateView):
 
 class OcorrenciaUpdateView(UpdateView):
     model = Ocorrencia
-    fields = '__all__'
+    form_class = OcorrenciaForm
+    template_name = "core/includes/modais_conteudo.html" # Aponta para o arquivo único
     success_url = reverse_lazy('core:list')
 
 class OcorrenciaDetailView(DetailView):
-    queryset = Ocorrencia.objects.all()
+    model = Ocorrencia
+    template_name = "core/includes/modais_conteudo.html" # Aponta para o arquivo único
 
 class OcorrenciaDeleteView(DeleteView):
-    queryset = Ocorrencia.objects.all()
+    model = Ocorrencia
+    template_name = "core/includes/modais_conteudo.html" # Aponta para o arquivo único
     success_url = reverse_lazy('core:list')

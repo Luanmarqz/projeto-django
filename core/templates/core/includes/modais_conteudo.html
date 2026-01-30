@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+.modal-header.bg-warning{
+  background-color: #1f2933;
+}
+
+</style>
+<body>
+    {% load django_bootstrap5 %}
+
+{% if object %} 
+
+    {% if "detail" in request.path %}
+        <div class="modal-header">
+            <h5 class="modal-title">Detalhes da Ocorrência</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <p><strong>Descrição:</strong> {{ object.descricao }}</p>
+            <p><strong>Local:</strong> {{ object.local }}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+
+    {% elif "update" in request.path %}
+        <form method="post" action="{% url 'core:update' object.pk %}">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Ocorrência</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                {% bootstrap_form form %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </div>
+        </form>
+
+    {% elif "delete" in request.path %}
+        <form method="post" action="{% url 'core:delete' object.pk %}">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Exclusão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir <strong>"{{ object.descricao }}"</strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="submit" class="btn btn-danger">Sim, Excluir</button>
+            </div>
+        </form>
+    {% endif %}
+
+{% endif %}
+</body>
+</html>
