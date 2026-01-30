@@ -8,111 +8,216 @@
     <title>OcorrenciasIFRN</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
-      .navbar-custom {
-        background-color: #0d6efd;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      }
-      .navbar-brand-custom {
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-      }
+      body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #f8f9fa;
+}
 
-      .navbar-brand-custom:hover {
-        color: white;
-      }
+/* NAVBAR */
+.navbar {
+  background-color: #1f2933; /* mesma cor da sidebar */
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
 
-      .container-md {
-        margin-top: 80px; /* Espaço para a navbar fixa */
-      }
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
 
-      .list-group-item{
-        display: flex;
-        justify-content: space-between;
-        border-color: #0d6efd;
-        font-size: 18px;
-        font-weight: bold;
-        color: #0d6efd;
-        background-color: white;
-        align-items: baseline;
-      }
+.navbar-brand:hover {
+  color: white;
+}
 
-      .form-select{
-        width: 200px;
-        border-color: #0d6efd;
-        color: #0d6efd;
-      }
+.navbar .form-control {
+  background-color: #2c3440;
+  border: none;
+  color: white;
+}
 
-      .crud input{
-        background: none;
-        border: none;
-        color: #0d6efd;
-      }
+.navbar .form-control::placeholder {
+  color: white;
+}
 
-      .crud{
-        position: static;
-        right: 0;
-      }
+.btn.btn-outline-success {
+  color: white;
+  border-color: white;
+}
+
+.btn.btn-outline-success:hover {
+  background-color: white;
+  color: #1f2933;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: calc(100vh - 56px);
+  background-color: #1f2933;
+  padding: 1rem;
+}
+
+.sidebar .nav-link {
+  color: #ced4da;
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #2c3440;
+  color: white;
+}
+
+.sidebar hr {
+  border-color: #58626d;
+  width: 200px;
+}
+
+.dropdown{
+  position: absolute;
+  bottom: 15px;
+}
+
+/* CONTEÚDO */
+.content {
+  margin-left: 240px;
+  padding: 90px 30px 30px;
+}
+
+/* LISTA */
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212529;
+  align-items: center;
+  border-color: #1f2933;
+}
+
+.form-select {
+  width: 200px;
+}
+
+.crud a {
+  background: none;
+  border: none;
+  color: #1f2933;
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.crud {
+  display: flex;
+  align-items: center;
+}
+
+.crud .form-select {
+  margin-left: 10px;
+  border-color: #1f2933;
+}
+
+
+
+.btn.btn-outline-primary.mb-3 {
+  color: #1f2933;
+  border-color: #1f2933;
+}
+
+.btn.btn-outline-primary.mb-3:hover {
+  background-color: #1f2933;
+  color: white;
+}
+
+.btn.btn-primary{
+  background-color: #1f2933;
+  border-color: #1f2933;
+}
     
     </style>
   </head>
   <body>
     
-    <div class="container-md">
-      <nav class="navbar navbar-custom fixed-top">
+
+    <!-- NAVBAR -->
+<nav class="navbar">
   <div class="container-fluid">
-    <a class="navbar-brand navbar-brand-custom" href="#">OcorrenciasIF</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Página Inicial</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sair</a>
-          </li>
-        </ul>
-        <form class="d-flex mt-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Procurar"/>
-          <button class="btn btn-outline-success" type="submit">Procurar</button>
-        </form>
-      </div>
-    </div>
+    <a class="navbar-brand">OcorrenciasIF</a>
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Procurar">
+      <button class="btn btn-outline-success">Procurar</button>
+    </form>
   </div>
 </nav>
 
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="#" class="nav-link">Pagina inicial</I></a>
+    </li>
+    <li>
+      <a href="#" class="nav-link"> Dashboard</a>
+    </li>
+    <li>
+      <a href="#" class="nav-link">Sobre</a>
+    </li>
+    <li>
+      <a href="#" class="nav-link">Contato</a>
+    </li>
+    <li>
+      <a href="#" class="nav-link"></a>
+    </li>
+  </ul>
+
+  
+
+  <div class="dropdown">
+
+    <hr class="text-secondary">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong>mdo</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+      <li><a class="dropdown-item" href="#">Perfil</a></li>
+      <li><a class="dropdown-item" href="#">Configurações</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Sair</a></li>
+    </ul>
+  </div>
+</div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="content">
 
 
-   <div class="modal-dialog modal-dialog-centered">
-  <div class="modal" tabindex="-1">
-  <div class="modal-dialog">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Cadastrar nova ocorrencia
+</button>
+
+<!-- MODAL DELETE -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cadastrar nova ocorrencia</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <form method="set" >
+        {% csrf_token %}
+        <button type="submit">Excluir</button>
+      </form>
+
     </div>
   </div>
 </div>
-</div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Cadastrar nova ocorrencia
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,40 +232,46 @@
         {% csrf_token %}
         {{form.as_p}}
 
-        <input type="submit" value="Salvar"> 
-
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
+      </div>
     </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Confirmar</button>
-      </div>
+      
     </div>
   </div>
 </div>
    <br>
    <br>
+
+   <!-- LISTA DE OCORRENCIAS -->
+  <header>
+    <h2>Lista de Ocorrencias</h2>
+  </header>
   <ul class="list-group">
 
   {% for ocorrencia in object_list %} 
-  <li class="list-group-item">{{ ocorrencia.descricao }} -
+  <li class="list-group-item">{{ ocorrencia.descricao }}
   
-    <div class="crud"><a href="{% url 'core:update' ocorrencia.id %}">Editar</a> - <a href="{% url 'core:detail' ocorrencia.id %}">Detalhes</a> - <a href="{% url 'core:delete' ocorrencia.id %}">Excluir</a></div>
-    
-
+    <div class="crud">
+      <a href="{% url 'core:update' ocorrencia.id %}">Editar</a> 
+      <a href="{% url 'core:detail' ocorrencia.id %}">Detalhes</a> 
+      <a href="{% url 'core:delete' ocorrencia.id %}">Excluir</a>
     <select class="form-select" aria-label="Default select example">
   <option selected>Status</option>
   <option value="1">Cancelado</option>
   <option value="2">Concluido</option>
   <option value="3">Em andamento</option>
-</select></li>
+</select></div>
+    
+    </li>
 {%endfor%}
 
 </ul>
     </div>
     
-    
-    
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>
